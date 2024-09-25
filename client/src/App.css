@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+}
+
+button {
+    border: 0;
+    outline: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 12px;
+    height: 43px;
+    width: 150px;
+    border-radius: 20px;
+    background: #FF7373;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+span.error {
+    color: #FF0E0E;
+}
+
+.react-responsive-modal-overlay {
+    background: rgba(0, 0, 0, 0.9) !important;
+}
+
+.Toastify__toast {
+    min-height: 0 !important;
+}
+
+.Toastify__toast-container {
+    width: fit-content !important;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+@media only screen and (max-width: 480px) {
+    .Toastify__toast-container {
+        width: 100% !important;
+    }
+}
