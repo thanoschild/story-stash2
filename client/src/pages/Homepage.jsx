@@ -50,6 +50,37 @@ function Homepage() {
       img: "https://www.timeshighereducation.com/student/sites/default/files/styles/default/public/istock-499343530.jpg",
     },
   ];
+  const storyData = [
+    {
+      heading: "fdf",
+      description: "1",
+      media: "dfs.png",
+      category: "Food",
+      likes: 0,
+    },
+    {
+      heading: "fdf",
+      description: "2",
+      media: "dfs.png",
+      category: "Food",
+      likes: 0,
+    },
+    {
+      heading: "fdf",
+      description: "3",
+      media: "dfs.png",
+      category: "Food",
+      likes: 0,
+    },
+    {
+      heading: "fdf",
+      description: "4",
+      media: "dfs.png",
+      category: "Food",
+      likes: 0,
+    },
+  ];
+
 
   const fetchUser = async () => {
     const data = await fetchUserApi(userToken);
@@ -106,7 +137,12 @@ function Homepage() {
         authType={authType}
         setUserToken={setUserToken}
       />
-      <AddStory open={addStoryModal} onClose={() => setAddStoryModal(false)} userToken={userToken}/>
+      <AddStory
+        open={addStoryModal}
+        onClose={() => setAddStoryModal(false)}
+        userToken={userToken}
+        storyData={storyData}
+      />
     </>
   );
 }

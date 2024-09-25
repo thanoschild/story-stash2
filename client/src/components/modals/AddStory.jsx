@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { createStoryApi } from "../../apis/Story";
 import { Modal } from "react-responsive-modal";
 import "../../assets/modals/AddStory.css";
 
-function AddStory({ open, onClose, userToken }) {
+function AddStory({ open, onClose, userToken, storyData }) {
   const {
     register,
     handleSubmit,
@@ -224,6 +224,10 @@ function AddStory({ open, onClose, userToken }) {
       }
     }
   };
+
+  useEffect(() => {
+    setAllSlides(storyData)
+  }, [storyData])
 
   console.log(allSlides);
   console.log("currentSlide: ", currentSlide);
