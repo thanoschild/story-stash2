@@ -34,21 +34,21 @@ export const fetchStoryByCatagoryApi = async (catagory) => {
 export const createStoryApi = async (storyData, token) => { 
     console.log("data: ", storyData);
     
-    try {
-        const response = await fetch(`${baseURL}/story/create`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(storyData)
-        });
+    // try {
+    //     const response = await fetch(`${baseURL}/story/create`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Authorization': `Bearer ${token}`
+    //         },
+    //         body: JSON.stringify(storyData)
+    //     });
 
-        const { status, data, msg } = await response.json();
-        return status === 'success' ? data : (toast.error(msg), undefined);
-    } catch (error) {
-        console.error(error);
-    }
+    //     const { status, data, msg } = await response.json();
+    //     return status === 'success' ? data : (toast.error(msg), undefined);
+    // } catch (error) {
+    //     console.error(error);
+    // }
 };
 
 export const downloadStoryApi = async (source) => {

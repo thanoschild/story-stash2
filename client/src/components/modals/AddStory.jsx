@@ -19,6 +19,7 @@ function AddStory({ open, onClose, userToken, storyData }) {
   const [allSlides, setAllSlides] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(-1);
   const videoRef = useRef(null);
+  const slidesRef = useRef(allSlides);
 
   const mediaTypes = {
     image: ["jpg", "jpeg", "png", "gif", "webp", "svg"],
@@ -169,9 +170,6 @@ function AddStory({ open, onClose, userToken, storyData }) {
   const deleteSlide = (e, index) => {
     e.stopPropagation();
 
-    // allSlides.splice(index, 1);
-    // setAllSlides((prevSlide) => prevSlide.filter((_, i) => i !== index));
-
     setAllSlides((prevSlides) => {
       const newSlides = prevSlides.filter((_, i) => i !== index);
       if (newSlides.length > 0 && index > 0) {
@@ -192,6 +190,7 @@ function AddStory({ open, onClose, userToken, storyData }) {
   };
 
   const createStory = async () => {
+
     if (!userToken) {
       alert("please login");
       return;
@@ -211,12 +210,20 @@ function AddStory({ open, onClose, userToken, storyData }) {
     }
 
     if (await trigger()) {
+      const val = getValues();
+      val.likes = 0;
+      
+      const updatedSlides = [...allSlides];
+
+      if (currentSlide >= 0 && currentSlide < updatedSlides.length) {
+        updatedSlides[currentSlide] = val;
+      } else {
+        updatedSlides.push(val);
+      }
+
       if (await onSubmit(getValues())) {
-        setAllSlides((prevSlides) => {
-          const updatedSlides = [...prevSlides]; 
-          createStoryApi(updatedSlides, userToken);
-          return updatedSlides; 
-        });
+        setAllSlides(updatedSlides);
+        await createStoryApi(updatedSlides, userToken);
 
         setAllSlides([]);
         setCurrentSlide(-1);
@@ -224,10 +231,6 @@ function AddStory({ open, onClose, userToken, storyData }) {
       }
     }
   };
-
-  // useEffect(() => {
-  //   setAllSlides(storyData)
-  // }, [storyData])
 
   console.log(allSlides);
   console.log("currentSlide: ", currentSlide);
