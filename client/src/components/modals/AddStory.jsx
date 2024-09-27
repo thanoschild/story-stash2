@@ -202,7 +202,7 @@ function AddStory({ open, onClose, userToken, storyData }) {
       if (value !== "") noData = false;
     });
 
-    if (noData) {
+    if (noData && allSlides.length > 2) {
       createStoryApi(allSlides, userToken);
       setAllSlides([]);
       setCurrentSlide(-1);
@@ -225,9 +225,9 @@ function AddStory({ open, onClose, userToken, storyData }) {
     }
   };
 
-  useEffect(() => {
-    setAllSlides(storyData)
-  }, [storyData])
+  // useEffect(() => {
+  //   setAllSlides(storyData)
+  // }, [storyData])
 
   console.log(allSlides);
   console.log("currentSlide: ", currentSlide);
